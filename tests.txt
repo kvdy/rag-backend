@@ -1,0 +1,88 @@
+## UPLOAD FILES
+-- 1 -- UPLOAD TO DEFAULT DIRECTORY
+curl -X POST "http://127.0.0.1:8000/upload/" \
+     -H "Content-Type: multipart/form-data" \
+     -F "file=@Sample.txt"
+
+-- 2 -- UPLOAD TO SPECIFIED DIRECTORY
+curl -X POST "http://127.0.0.1:8000/upload/" \
+     -H "Content-Type: multipart/form-data" \
+     -F "file=@Resume-KaustubhVaidya.pdf" \
+     -F "directory=RESUMES"
+
+-- 3 -- INGEST FROM DEFAULT DIRECTORY
+curl -X POST "http://127.0.0.1:8000/ingest/"
+
+-- 4 -- INGEST FROM SPECIFIED DIRECTORY
+curl -X POST "http://127.0.0.1:8000/ingest/" \
+     -H "Content-Type: application/json" \
+     -d '{"directory": "RESUMES"}'
+
+-- 5 -- GET INGESTION STATUS
+curl -X GET "http://127.0.0.1:8000/ingest/status/"
+
+-- 6 -- QUERY FROM DEFAULT DIRECTORY
+curl -X POST "http://127.0.0.1:8000/query/" \
+     -H "Content-Type: application/json" \
+     -d '{"question": "What is this document about?"}'
+
+-- 7 -- QUERY FROM SPECIFIED DIRECTORY
+curl -X POST "http://127.0.0.1:8000/query/" \
+     -H "Content-Type: application/json" \
+     -d '{"question": "What does this document say about AI?", "directory": "RESUMES"}'
+
+
+NEGATIVE TEST CASES
+
+-- 8 -- UPLOAD WITHOUT A FILE
+curl -X POST "http://127.0.0.1:8000/upload/"
+
+-- 9 -- QUERY WITH NO INGESTED DATA
+curl -X POST "http://127.0.0.1:8000/query/" \
+     -H "Content-Type: application/json" \
+     -d '{"question": "Explain the document content."}'
+
+
+
+
+curl -X 'POST' 'http://127.0.0.1:8000/upload/' -F 'file=@Sample.txt'
+
+
+curl -X 'POST' 'http://127.0.0.1:8000/ingest/'
+
+
+
+curl -X 'POST' 'http://127.0.0.1:8000/query/' -H "Content-Type: application/json" -d '{"question": "What is the document about?"}'
+
+
+
+
+# Recommended for most uses
+DATABASE_URL=postgres://neondb_owner:npg_5YTIG2BilcSg@ep-frosty-glitter-a5flpvlc-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require
+
+# For uses requiring a connection without pgbouncer
+DATABASE_URL_UNPOOLED=postgresql://neondb_owner:npg_5YTIG2BilcSg@ep-frosty-glitter-a5flpvlc.us-east-2.aws.neon.tech/neondb?sslmode=require
+
+# Parameters for constructing your own connection string
+PGHOST=ep-frosty-glitter-a5flpvlc-pooler.us-east-2.aws.neon.tech
+PGHOST_UNPOOLED=ep-frosty-glitter-a5flpvlc.us-east-2.aws.neon.tech
+PGUSER=neondb_owner
+PGDATABASE=neondb
+PGPASSWORD=npg_5YTIG2BilcSg
+
+# Parameters for Vercel Postgres Templates
+POSTGRES_URL=postgres://neondb_owner:npg_5YTIG2BilcSg@ep-frosty-glitter-a5flpvlc-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require
+POSTGRES_URL_NON_POOLING=postgres://neondb_owner:npg_5YTIG2BilcSg@ep-frosty-glitter-a5flpvlc.us-east-2.aws.neon.tech/neondb?sslmode=require
+POSTGRES_USER=neondb_owner
+POSTGRES_HOST=ep-frosty-glitter-a5flpvlc-pooler.us-east-2.aws.neon.tech
+POSTGRES_PASSWORD=npg_5YTIG2BilcSg
+POSTGRES_DATABASE=neondb
+POSTGRES_URL_NO_SSL=postgres://neondb_owner:npg_5YTIG2BilcSg@ep-frosty-glitter-a5flpvlc-pooler.us-east-2.aws.neon.tech/neondb
+POSTGRES_PRISMA_URL=postgres://neondb_owner:npg_5YTIG2BilcSg@ep-frosty-glitter-a5flpvlc-pooler.us-east-2.aws.neon.tech/neondb?connect_timeout=15&sslmode=require
+
+
+
+
+echo 'export OPENAI_API_KEY="your-openai-api-key"' >> ~/.bashrc
+source ~/.bashrc
+

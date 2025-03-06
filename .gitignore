@@ -1,0 +1,46 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+ENV/
+*.venv
+
+# Logs and debug
+logs/
+*.log
+debug.log
+
+# Uploaded files
+uploaded_docs/
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python dependencies
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# FastAPI specific
+*.db
+instance/
+config.py
+
+# Ignore environment files
+.env
+.env.*
