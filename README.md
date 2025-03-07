@@ -8,8 +8,10 @@ Ensure pgvector extension is installed in your PostgreSQL database.
 Installation
 Clone the repository:
 
-git clone <repository-url>
-cd <repository-directory>
+
+
+git clone https://github.com/kvdy/rag-backend
+cd rag-backend
 
 Create a virtual environment:
 python -m venv venv
